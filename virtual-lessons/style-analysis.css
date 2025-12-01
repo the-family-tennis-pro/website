@@ -1,0 +1,348 @@
+.header-container {
+  display: flex;
+  justify-content: space-between; /*pushes logo left, text right */
+  align-items: center; /*vertically centers everyhting*/
+  padding: 10px 20px;
+}
+
+.text-group {
+  display: flex; /*makes text in banner sit side-by-side*/
+  align-items: center;
+  gap: 20px;
+}
+
+.wayne {
+  font-family: 'Georgia';
+  font-size: 24px;
+  color: #39FF14; /*neon green*/
+  margin: 0;
+}
+
+.pro {
+  font-family: 'Georgia';
+  font-size: 20px;
+  color: white;
+  margin: 0;
+}
+
+.banner {
+  max-width: 150px;
+  height: auto;
+}
+
+body {
+  background-color: #131314;
+  font-family: 'Georgia';
+  margin: 0;
+}
+
+/* --- Navigation Bar Rules --- */
+.navbar {
+  background-color: #1f1f1f; /* Slightly lighter than the black background */
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.navbar ul {
+  list-style-type: none;   /* Removes the bullet points */
+  margin: 0;
+  padding: 15px;           /* Adds space inside the bar */
+  display: flex;           /* Makes the list horizontal instead of vertical */
+  justify-content: center; /* Centers the links on the page */
+  gap: 40px;               /* Space between each link */
+}
+
+.navbar a {
+  color: white;            /* Text color */
+  text-decoration: none;   /* Removes the default blue underline */
+  font-family: 'Georgia';
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;  /* Makes the color change smooth */
+}
+
+/* This runs when you put your mouse OVER the link */
+.navbar a:hover {
+  color: #39FF14;          /* Turns Neon Green when hovered! */
+}
+
+/* --- Mobile Optimization --- */
+/* This rule ONLY applies if the screen is smaller than 600px (like a phone) */
+@media (max-width: 600px) {
+  
+  /* 1. Make the Navbar Stack Vertically */
+  .navbar ul {
+    flex-direction: column;  /* Stack links top-to-bottom */
+    gap: 10px;               /* Less space between items */
+    padding: 10px;
+  }
+
+  /* 2. Make the Header Stack too */
+  .header-container {
+    flex-direction: column;  /* Put the Logo ON TOP of the Text Group */
+    gap: 20px;
+    text-align: center;      /* Center the text since it's now stacked */
+  }
+  
+  /* 3. Center the text group specifically */
+  .text-group {
+    align-items: center;     /* Center the names */
+    width: 100%;             /* Ensure it takes up full width */
+  }
+  
+  /* 4. Allow the text to wrap if needed */
+  .wayne {
+    font-size: 28px;         /* Make the name slightly smaller to fit */
+  }
+}
+
+/* --- Analysis Form Styling --- */
+.analysis-form {
+  background-color: #1f1f1f;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid #333;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  color: white;
+  margin-bottom: 8px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.analysis-form input, 
+.analysis-form textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #131314; /* Darker input background */
+  border: 1px solid #444;
+  color: white;
+  border-radius: 5px;
+  box-sizing: border-box; /* Prevents padding from breaking width */
+  font-family: 'Georgia';
+}
+
+.analysis-form input:focus, 
+.analysis-form textarea:focus {
+  outline: none;
+  border-color: #39FF14; /* Neon Green Glow on Focus */
+}
+
+/* Button Styles */
+.analysis-form button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Valid State (Green) */
+.submit-active {
+  background-color: #39FF14;
+  color: black;
+}
+
+/* Invalid State (Grey) */
+.submit-disabled {
+  background-color: #444;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* --- Video Upload settings --- */
+
+/* The Background Dimmer */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stays in place when scrolling */
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Very dark semi-transparent background */
+  z-index: 10000; /* Ensures it sits on top of everything */
+  
+  /* Flexbox magic to center the box perfectly */
+  align-items: center; 
+  justify-content: center;
+}
+
+/* The Popup Box */
+.modal-content {
+  background-color: #1f1f1f;
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid #333;
+  box-shadow: 0 0 30px rgba(0,0,0,0.9); /* Deep shadow for depth */
+  text-align: center;
+  max-width: 400px;
+  width: 90%; /* Fits nicely on phones */
+  font-family: 'Georgia'
+}
+
+/* The Title */
+.modal-content h3 {
+  color: #39FF14; /* Your signature Neon Green */
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* The Body Text */
+.modal-content p {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+/* The Button */
+.modal-content button {
+  background-color: #39FF14;
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.modal-content button:hover {
+  transform: scale(1.05); /* Slight pop effect on hover */
+}
+
+/* =========================================
+   UNIFIED IMAGE/VIDEO BORDER STYLE
+   (Matches the dark style of the contact form)
+   ========================================= */
+
+/* This selects ALL your different image types at once */
+.mySlides img, 
+.featured-img, 
+.featured-video, 
+.video-cover {
+    /* The new subtle border */
+    border: 1px solid #333;
+    
+    /* The deep dark shadow for depth */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    
+    /* Keep the rounded corners (looks nice!) */
+    border-radius: 15px;
+    
+    /* Important for keeping borders inside the box */
+    box-sizing: border-box; 
+}
+/* FEATURED ARTICLE */
+/* Style for the single featured image */
+.featured-img {
+  width: 100%;                  /* Forces it to fit the container width */
+  height: auto;                 /* Keeps the shape correct (doesn't squish) */
+  display: block;               /* Fixes tiny gap issues at the bottom of images */
+}
+
+/* --- Slideshow Rules --- */
+.slideshow-container {
+  max-width: 800px;
+  position: relative;
+  margin: 20px auto; /* Adds space above/below and centers it */
+}
+
+/* Hide images by default */
+.mySlides {
+  display: none;
+}
+
+.slide-title {
+  text-align: center;       /* Centers the text */
+  color: #39FF14;         /* Neon green color */
+  font-family: 'Georgia';   
+  font-size: 24px;          
+  margin-bottom: 15px;      /* Adds breathing room between title and photo */
+  
+  /* The "Clean" Design Tricks: */
+  text-transform: uppercase; /* Makes it all caps (looks more professional) */
+  letter-spacing: 3px;       /* Spreads the letters out slightly */
+  font-weight: normal;       /* Keeps it thin and elegant, not chunky */
+}
+
+/* The Dots Container */
+.dots-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* The Dot Style */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 4px;
+  background-color: #717171; /* Grey */
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+/* Active state (Neon Green) */
+.active, .dot:hover {
+  background-color: #39FF14; 
+}
+
+/* Fading Animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/*Thumbnail for video: youth training*/
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Ensures the box is video-shaped */
+}
+
+.video-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* Position it ON TOP of the video */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  z-index: 10; /* Higher number = on top */
+  cursor: pointer;
+}
+
+.featured-video {
+  width: 100%;                /* Stretches to fit the container */
+  aspect-ratio: 16 / 9;       /* Forces standard video shape (Widescreen) */
+}
+
+/* Contact Text to Georgia */
+.pricing-contact {
+  font-family: Georgia, 'Times New Roman', serif;
+}

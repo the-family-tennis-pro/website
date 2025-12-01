@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <title>The Family Tennis Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="style-analysis.css">
+  </head>
+  
+  <body>
+
+    <div class="header-container">
+      <img src="/banner-business-card-2x.png" alt="Company Logo Banner" class="banner">
+      
+      <div class="text-group">
+        <h2 class="wayne">Wayne Keeler</h2>
+        <h3 class="pro">USPTR Professional</h3>
+      </div>
+      
+    </div>
+    
+    <nav class="navbar">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/tennis/index-tennis.html">Tennis</a></li>
+        <li><a href="/pickelball/index-pickelball.html">Pickelball</a></li>
+        <li><a href="/about/index-about.html">About Wayne</a></li>
+        <li><a href="index-analysis.html">Virtual Lessons</a></li>
+        <li><a href="/index-store.html">Store</a></li>
+      </ul>
+    </nav>
+
+    <div class="slideshow-container" style="margin-top: 50px; text-align: center;">
+  
+      <h2 class="slide-title">Professional Feedback</h2>
+      <p style="color: #ccc; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6;">
+        Upload your video to <strong>YouTube</strong> (Unlisted or Public) and paste the link below. 
+        <br><span style="font-size: 14px; color: #888;">(While unlisted only those with the link can view the video.)</span>
+      </p>
+
+      <form id="swing-form" class="analysis-form">
+    
+        <div class="form-group">
+          <label>Player Name</label>
+          <input type="text" name="name" required placeholder="Enter name here">
+        </div>
+
+        <div class="form-group">
+          <label>YouTube Video Link</label>
+          <input 
+            type="url" 
+            name="video_link" 
+            id="youtube-input" 
+            required 
+            placeholder="https://youtu.be/..."
+            oninput="validateYouTube()"
+          >
+          <small id="error-msg" style="color: #ff4444; display: none; margin-top: 5px;">
+            ⚠️ That doesn't look like a valid YouTube video link.
+          </small>
+        </div>
+
+        <div id="video-preview" style="display: none; margin-bottom: 20px;">
+          <p style="color: #39FF14; font-size: 14px; margin-bottom: 5px;">✅ Video Found!</p>
+          <img id="thumbnail-img" src="" style="width: 200px; border-radius: 10px; border: 2px solid #39FF14;">
+        </div>
+
+        <div class="form-group">
+          <label>What are you working on?</label>
+          <textarea name="message" rows="4" placeholder="My backhand volley feels weak... (or let me tell you what I see)"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" disabled class="submit-disabled">
+          Send for Analysis
+        </button>
+
+      </form>
+
+      <div class="pricing-contact" style="margin-top: 60px; margin-bottom: 40px; text-align: center; color: #ccc;">
+        
+        <hr style="border: 0; border-top: 1px solid #333; margin-bottom: 30px;">
+
+        <h3 style="color: white; margin-bottom: 10px;">Pricing & Rates</h3>
+        
+        <p style="font-size: 15px; line-height: 1.6; max-width: 450px; margin: 0 auto 25px auto;">
+          Analysis fees depend on the length of the video submitted. <br>
+          Please contact Wayne directly to discuss pricing.
+        </p>
+
+        <a href="tel:772-713-3220" style="
+          display: inline-block;
+          color: #39FF14;          /* Neon Green Text */
+          font-size: 20px;
+          font-weight: bold;
+          text-decoration: none;
+          border: 1px solid #333;
+          background-color: #1f1f1f;
+          padding: 12px 30px;
+          border-radius: 50px;     /* Pill shape */
+          box-shadow: 0 0 10px rgba(0,0,0,0.5);
+          transition: transform 0.2s;
+        " 
+        onmouseover="this.style.transform='scale(1.05)'" 
+        onmouseout="this.style.transform='scale(1)'">
+          📞 (772) 713-3220
+        </a>
+
+      </div>
+
+    </div>
+
+    <div id="success-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h3>🎾 Message Sent </h3>
+        <p>Reach out to Wayne at the contact below, and he will review your video.</p>
+        <button onclick="closeModal()">close</button>
+      </div>
+    </div>
+
+    <script src="analysis.js"></script>
+
+  </body>
+  
+</html>
