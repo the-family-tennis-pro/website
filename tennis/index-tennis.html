@@ -121,26 +121,32 @@
         </p>
 
         <a href="https://www.youtube.com/results?search_query=Wayne+Keeler+Tennis" target="_blank" style="
-          display: inline-block;
+          display: inline-flex;          /* Keeps icon and text side-by-side */
+          align-items: center;           /* Centers them vertically */
+          justify-content: center;       /* Centers them horizontally */
+          gap: 10px;                     /* Space between icon and text */
           color: #1f1f1f;
-          background-color: #39FF14; /* Neon Green */
+          background-color: #39FF14;     /* Neon Green */
           font-size: 18px;
           font-weight: bold;
           text-decoration: none;
           padding: 12px 30px;
           border-radius: 50px;
           transition: transform 0.2s, background-color 0.2s;
-        " 
-        onmouseover="this.style.transform='scale(1.05)'; this.style.backgroundColor='#32e012'" 
-        onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='#39FF14'">
-          📺 Search for Coach Wayne on YouTube
-        </a>
+          " 
+            onmouseover="this.style.transform='scale(1.05)'; this.style.backgroundColor='#32e012'" 
+            onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='#39FF14'">
+          
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/> </svg>
+              Coach Wayne on YouTube
+          </a>
 
       </div>
 
     </div>
 
-    <div class="slideshow-container" style="margin-bottom: 50px;">
+    <!--<div class="slideshow-container" style="margin-bottom: 50px;">
 
       <h2 class="slide-title">Winding Cypress</h2>
 
@@ -151,7 +157,7 @@
         style="max-width: 400px; width: 100%; display: block; margin: 0 auto;"
       >
 
-    </div>
+    </div>-->
 
     <script src="fairmont-slideshow.js"></script>
 
