@@ -56,7 +56,7 @@ document.getElementById("swing-form").addEventListener("submit", function(e) {
   var data = new FormData(form);
 
   // 3. Send to Google Script
-  fetch("https://script.google.com/macros/s/AKfycbxi9CR-TxSFMpqWJ3Ann6cqIVTDm84Sg_mDLdxK95foIx4LNUY_bHxZqiCTlyNBYveYhQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxakl9gvGJPn0KnpTRYFDl9dzj8d6EZJRaC5A7UfdWqJrDWjOiCn24KyGTDvhQF1WLGEg/exec", {
     method: "POST",
     body: data
   })
