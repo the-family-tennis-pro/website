@@ -1,85 +1,132 @@
-function validateYouTube() {
-  // 1. Get all the elements we need to talk to youtube
-  var url = document.getElementById("youtube-input").value;
-  var btn = document.getElementById("submit-btn");
-  var error = document.getElementById("error-msg");
-  var preview = document.getElementById("video-preview");
-  var thumbnail = document.getElementById("thumbnail-img");
+// ==========================================
+// 1. CONFIGURATION
+// ==========================================
+// PASTE YOUR GOOGLE SCRIPT URL INSIDE THE QUOTES BELOW:
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxakl9gvGJPn0KnpTRYFDl9dzj8d6EZJRaC5A7UfdWqJrDWjOiCn24KyGTDvhQF1WLGEg/exec';
 
-  // 2. The "Regular Expression" math to find the Video ID
-  // It looks for youtube.com, youtu.be, or embed links
-  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  var match = url.match(regExp);
+// Global variables for Math Challenge
+let correctAnswer = 0;
 
-  // 3. Check if we found a valid ID (11 characters long)
-  if (match && match[2].length == 11) {
-    // --- VALID LINK FOUND ---
-    var videoId = match[2];
+// ==========================================
+// 2. SETUP ON PAGE LOAD
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
     
-    // Hide error, enable button
-    error.style.display = "none";
-    btn.disabled = false;
-    btn.className = "submit-active"; // Turns Green
+    // A. Generate Math Challenge Numbers
+    const num1 = Math.floor(Math.random() * 10);
+    const num2 = Math.floor(Math.random() * 10);
     
-    // Show the Thumbnail Preview from YouTube's server
-    thumbnail.src = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
-    preview.style.display = "block";
-
-  } else {
-    // --- INVALID LINK ---
-    // Only show error if they have typed more than 5 characters
-    if (url.length > 5) {
-      error.style.display = "block";
+    // Update the HTML to show these numbers
+    const num1Span = document.getElementById("num1");
+    const num2Span = document.getElementById("num2");
+    
+    // Check if elements exist (to prevent errors on other pages)
+    if (num1Span && num2Span) {
+        num1Span.innerHTML = num1;
+        num2Span.innerHTML = num2;
+        correctAnswer = num1 + num2;
     }
-    // Hide preview, disable button
-    preview.style.display = "none";
-    btn.disabled = true;
-    btn.className = "submit-disabled"; // Stays Grey
-  }
-}
 
-// ... your existing validateYouTube function is here ...
-
-// NEW: Handle the Form Submission to Google
-document.getElementById("swing-form").addEventListener("submit", function(e) {
-  e.preventDefault(); // Stop the page from reloading
-  
-  var form = e.target;
-  var btn = document.getElementById("submit-btn");
-  var originalText = btn.innerText;
-
-  // 1. Change button text to show it's working
-  btn.innerText = "Sending...";
-  btn.disabled = true;
-
-  // 2. Gather the data
-  var data = new FormData(form);
-
-  // 3. Send to Google Script
-  fetch("https://script.google.com/macros/s/AKfycbxakl9gvGJPn0KnpTRYFDl9dzj8d6EZJRaC5A7UfdWqJrDWjOiCn24KyGTDvhQF1WLGEg/exec", {
-    method: "POST",
-    body: data
-  })
-  .then(response => response.json())
-  .then(result => {
-    if(result.result === "success") {
-      // Success! Show a message or clear the form
-      document.getElementById('success-modal').style.display = 'flex';
-      form.reset();
-      document.getElementById("video-preview").style.display = "none";
-      btn.innerText = originalText;
-    } else {
-      alert("Error sending message. Please try again.");
-      btn.innerText = originalText;
-      btn.disabled = false;
+    // B. Attach Event Listeners
+    const form = document.forms['submit-to-google-sheet'];
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
     }
-  })
-  .catch(error => {
-    console.error('Error!', error.message);
-    alert("Error! check console.");
-  });
+
+    const youtubeInput = document.getElementById('youtube-input');
+    if (youtubeInput) {
+        youtubeInput.addEventListener('input', validateYouTube);
+    }
 });
 
+// ==========================================
+// 3. YOUTUBE VALIDATION LOGIC
+// ==========================================
+function validateYouTube() {
+    const youtubeInput = document.getElementById('youtube-input');
+    const errorMsg = document.getElementById('error-msg');
+    const previewDiv = document.getElementById('video-preview');
+    const thumbnailImg = document.getElementById('thumbnail-img');
+    const submitButton = document.getElementById('submit-btn');
+
+    const url = youtubeInput.value;
+    // Regex to detect valid YouTube ID
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        // VALID LINK
+        errorMsg.style.display = 'none';
+        previewDiv.style.display = 'block';
+        thumbnailImg.src = 'https://img.youtube.com/vi/' + match[2] + '/0.jpg';
+        
+        // Enable Button
+        submitButton.disabled = false;
+        submitButton.style.backgroundColor = '#39FF14';
+        submitButton.style.color = 'black';
+        submitButton.style.cursor = 'pointer';
+        submitButton.style.opacity = '1';
+        submitButton.classList.remove('submit-disabled');
+    } else {
+        // INVALID LINK
+        errorMsg.style.display = 'block';
+        previewDiv.style.display = 'none';
+        
+        // Disable Button
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = '#555';
+        submitButton.style.cursor = 'not-allowed';
+        submitButton.style.opacity = '0.6';
+        submitButton.classList.add('submit-disabled');
+    }
+}
+
+// ==========================================
+// 4. FORM SUBMISSION LOGIC
+// ==========================================
+function handleFormSubmit(e) {
+    e.preventDefault(); // Stop page reload
+
+    const form = document.forms['submit-to-google-sheet'];
+    const submitButton = document.getElementById('submit-btn');
+    const mathError = document.getElementById('math-error');
+    const successModal = document.getElementById('success-modal');
+    
+    // A. CHECK MATH ANSWER
+    const userAnswer = document.getElementById('mathAnswer').value;
+    if (parseInt(userAnswer) !== correctAnswer) {
+        mathError.style.display = "inline";
+        mathError.innerHTML = "Incorrect Math Answer!";
+        return; // Stop here
+    } else {
+        mathError.style.display = "none";
+    }
+
+    // B. SEND TO GOOGLE
+    submitButton.disabled = true;
+    submitButton.innerHTML = "Sending...";
+    submitButton.style.backgroundColor = "#555";
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            // Success! Show Modal
+            successModal.style.display = 'flex';
+            submitButton.style.display = 'none'; // Hide button to prevent double send
+            form.reset(); // Clear form
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            submitButton.disabled = false;
+            submitButton.innerHTML = "Error! Try Again.";
+            submitButton.style.backgroundColor = "red";
+        });
+}
+
+// ==========================================
+// 5. MODAL LOGIC (Pop-up Box)
+// ==========================================
 function closeModal() {
-  document.getElementById('success-modal').style.display = 'none';
+    const successModal = document.getElementById('success-modal');
+    successModal.style.display = 'none';
+    location.reload(); // Refresh page to get new math numbers
 }
