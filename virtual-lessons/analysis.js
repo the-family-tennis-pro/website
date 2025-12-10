@@ -1,8 +1,8 @@
 // ==========================================
 // 1. CONFIGURATION
 // ==========================================
-// PASTE YOUR GOOGLE SCRIPT URL INSIDE THE QUOTES BELOW:
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzvJ6z3IM5FWhB9zbRiTtI1pYXTf30WPnCvrKexoL3ClXIFWADgtxKIbWarJxUiKbtR9A/exec';
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwfaTZt9hd3ohyH3xM18Ld7GVS_nAY0CRGHLCxsRFb4fXIcwKLoTwtXUnNg50yvNI93nA/exec';
 
 // Global variables for Math Challenge
 let correctAnswer = 0;
@@ -10,6 +10,7 @@ let correctAnswer = 0;
 // ==========================================
 // 2. SETUP ON PAGE LOAD
 // ==========================================
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // A. Generate Math Challenge Numbers
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ==========================================
 // 3. YOUTUBE VALIDATION LOGIC
 // ==========================================
+
 function validateYouTube() {
     const youtubeInput = document.getElementById('youtube-input');
     const errorMsg = document.getElementById('error-msg');
@@ -84,6 +86,7 @@ function validateYouTube() {
 // ==========================================
 // 4. FORM SUBMISSION LOGIC
 // ==========================================
+
 function handleFormSubmit(e) {
     e.preventDefault(); // Stop page reload
 
@@ -125,6 +128,7 @@ function handleFormSubmit(e) {
 // ==========================================
 // 5. MODAL LOGIC (Pop-up Box)
 // ==========================================
+
 function closeModal() {
     const successModal = document.getElementById('success-modal');
     successModal.style.display = 'none';
