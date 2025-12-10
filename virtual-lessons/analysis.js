@@ -2,7 +2,7 @@
 // 1. CONFIGURATION
 // ==========================================
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwfaTZt9hd3ohyH3xM18Ld7GVS_nAY0CRGHLCxsRFb4fXIcwKLoTwtXUnNg50yvNI93nA/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycby4SVWj8UY2sPRLpgbb4GogBQ7EoSSLKUupTNW5qmAviOFzuKswx6qlbV3oClbRu-yMYQ/exec';
 
 // Global variables for Math Challenge
 let correctAnswer = 0;
